@@ -26,3 +26,5 @@ Below these data, there are some verification camps on column A on excel that ca
 - Company name is written to ensure the correct ticker symbol was typed
 - Since Debt/Ebitda and EV/Assets takes values from 2 and 3 different tables respectively, thus it is important to make sure the columns in each of the tables have the same date
 - Sales (ttm), Sales (last 10-K) and Sales (36M) will let you know that the data from sales equals to the same date for every company. Ideally every line should have equal values. There is an exception in these last 3 lines: some companies end its fiscal year in the middle of the year (like microsoft) thus it will appear different dates for different companies. If that is ok, then just make sure that the date shown is really the fiscal date on the SEC website for example. 
+
+A sample output is provided
