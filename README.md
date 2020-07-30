@@ -1,5 +1,5 @@
 # Fundamental-Analysis: peer-comparision
-This project was created to analyse the financial statements of public companies for a mexican pension fund.
+This project was created to analyse the financial statements of public companies.
 
 This is a python file that will extract data from yahoo finance about public companies and insert it in a excel file created and named by the user in the same path of the python file.
 
