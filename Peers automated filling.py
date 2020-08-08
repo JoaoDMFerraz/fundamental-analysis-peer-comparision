@@ -115,13 +115,18 @@ while True:
     
     PB_ratio = float(Valuation_Stats.loc[list(Valuation_Stats.iloc[:,0]).index('Price/Book (mrq)')][1])
 
+    EV_ebitda_anual_col_index = 'Fail'
+
     for i in range(len(Valuation_Stats.columns)):
         if (Valuation_Stats.columns[i] == Balance_Sheet.columns[1]) or (Balance_Sheet.columns[1] in Valuation_Stats.columns[i]):
             EV_ebitda_anual_col_index = i
 
-    EV_ebitda_anual = float(Valuation_Stats.loc[list(Valuation_Stats.iloc[:,0]).index('Enterprise Value/EBITDA 6')][EV_ebitda_anual_col_index])
+    if EV_ebitda_anual_col_index != 'Fail':
+        EV_ebitda_anual = float(Valuation_Stats.loc[list(Valuation_Stats.iloc[:,0]).index('Enterprise Value/EBITDA 6')][EV_ebitda_anual_col_index])
+    elif EV_ebitda_anual_col_index == 'Fail':
+        EV_ebitda_anual = 'Fail'
 
-    if ebitda_anual == 'Fail': EV_Assets = 'Fail'
+    if ebitda_anual == 'Fail' or EV_ebitda_anual == 'Fail': EV_Assets = 'Fail'
     else: EV_Assets = (EV_ebitda_anual * ebitda_anual) / total_assets
 
     sheet.cell(row = 1, column = col).value = symbol
@@ -157,7 +162,9 @@ while True:
     else:
         sheet.cell(row = 22, column = col).value = 'OK'
 
-    if (Valuation_Stats.columns[EV_ebitda_anual_col_index] == Income_Statement.columns[2]) and (Valuation_Stats.columns[EV_ebitda_anual_col_index] == Balance_Sheet.columns[1]):
+    if EV_ebitda_anual_col_index == 'Fail':
+        pass
+    elif (Valuation_Stats.columns[EV_ebitda_anual_col_index] == Income_Statement.columns[2]) and (Valuation_Stats.columns[EV_ebitda_anual_col_index] == Balance_Sheet.columns[1]):
         sheet.cell(row = 23, column = col).value = 'OK'
     else:
         sheet.cell(row = 23, column = col).value = 'Fail'
