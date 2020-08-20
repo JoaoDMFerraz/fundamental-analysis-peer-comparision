@@ -4,10 +4,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests, re, time
 
-##yahoo package
-##http://theautomatic.net/2020/05/05/how-to-download-fundamentals-data-with-python/
-##pd.set_option('display.max_columns', None)
-
 def get_dividend_yield(symbol):
     data = si.get_quote_table(symbol , dict_result = True)
     begin = data['Forward Dividend & Yield'].index('(')
